@@ -1,0 +1,63 @@
+/* Tokyo Night */
+:root {
+  --bg: #1a1b26;
+  --bg-dark: #16161e;
+  --bg-highlight: #292e42;
+  --border: #3b4261;
+  --fg: #c0caf5;
+  --fg-dim: #a9b1d6;
+  --comment: #565f89;
+  --blue: #7aa2f7;
+  --cyan: #7dcfff;
+  --magenta: #bb9af7;
+  --green: #9ece6a;
+  --brand-start: #22d3ee;
+  --brand-end: #f472b6;
+
+  --font-mono: ui-monospace, 'JetBrains Mono', 'Cascadia Code', 'SF Mono', Menlo, Consolas, 'DejaVu Sans Mono',
+    monospace;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+a {
+  color: var(--blue);
+  text-decoration-color: rgb(122 162 247 / 0.4);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--cyan);
+  text-decoration-color: currentColor;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--bg-highlight);
+}

@@ -1,0 +1,174 @@
+---
+import BrailleLogo from '../components/BrailleLogo.astro';
+import Base from '../layouts/Base.astro';
+
+const INSTALL_COMMAND = 'npm install -g jouzu';
+const GITHUB_URL = 'https://github.com/shisa-ai/jouzu';
+const WINDOWS_URL = `${GITHUB_URL}/releases/latest`;
+const NPM_URL = 'https://www.npmjs.com/package/jouzu';
+const PLATFORM_URL = 'https://platform.shisa.ai/';
+---
+
+<Base
+  title="Jouzu — a batteries-included coding harness"
+  description="A batteries-included Pi-based coding harness with goals/loops, subagents, web fetch, and the latest open-source coding models via the Shisa AI Platform."
+>
+  <main>
+    <h1><BrailleLogo /></h1>
+
+    <p class="blurb">
+      A &ldquo;batteries included&rdquo; <a href="https://pi.dev/">Pi</a>-based coding harness with goals/loops,
+      subagents, web fetch, and access to the best and latest open-source coding models via the{' '}
+      <a href={PLATFORM_URL}>Shisa AI Platform</a> model catalog.
+    </p>
+
+    <div class="install">
+      <code><span class="prompt" aria-hidden="true">$ </span><span id="install-command">{INSTALL_COMMAND}</span></code>
+      <button type="button" class="copy" data-copy={INSTALL_COMMAND} aria-label="Copy install command">copy</button>
+    </div>
+    <p class="hint">then run <code>jz</code> &middot; needs Node.js 22.19+</p>
+
+    <a class="download" href={WINDOWS_URL}>
+      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+        <path fill="currentColor" d="M0 0h7.5v7.5H0zM8.5 0H16v7.5H8.5zM0 8.5h7.5V16H0zM8.5 8.5H16V16H8.5z"></path>
+      </svg>
+      Download for Windows
+    </a>
+    <p class="hint">x64 installer, everything bundled</p>
+  </main>
+
+  <footer>
+    <a href={GITHUB_URL}>GitHub</a>
+    <a href={NPM_URL}>npm</a>
+    <a href="https://shisa.ai/">Shisa AI</a>
+  </footer>
+</Base>
+
+<script>
+  for (const button of document.querySelectorAll<HTMLButtonElement>('button[data-copy]')) {
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy ?? '');
+        button.textContent = 'copied';
+      } catch {
+        button.textContent = 'failed';
+      }
+      setTimeout(() => (button.textContent = 'copy'), 1500);
+    });
+  }
+</script>
+
+<style>
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100dvh - 4.5rem);
+    max-width: 44rem;
+    margin: 0 auto;
+    padding: 4rem 1rem 2rem;
+    text-align: center;
+  }
+
+  h1 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 0 2.5rem;
+  }
+
+  .blurb {
+    margin: 0 0 2.5rem;
+    color: var(--fg-dim);
+    text-wrap: pretty;
+  }
+
+  .install {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: 100%;
+    padding: 0.85rem 0.85rem 0.85rem 1.25rem;
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    font-size: 1.05rem;
+  }
+
+  .install code {
+    font-family: inherit;
+    color: var(--green);
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .prompt {
+    color: var(--comment);
+    user-select: none;
+  }
+
+  .copy {
+    flex: none;
+    padding: 0.25rem 0.65rem;
+    background: var(--bg-highlight);
+    border: 1px solid var(--border);
+    border-radius: 0.35rem;
+    color: var(--fg-dim);
+    font: inherit;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+
+  .copy:hover {
+    color: var(--cyan);
+    border-color: var(--cyan);
+  }
+
+  .hint {
+    margin: 0.6rem 0 0;
+    color: var(--comment);
+    font-size: 0.85rem;
+  }
+
+  .hint code {
+    font-family: inherit;
+    color: var(--fg-dim);
+  }
+
+  .download {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 2.25rem;
+    padding: 0.6rem 1.15rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    color: var(--fg);
+    text-decoration: none;
+  }
+
+  .download:hover {
+    color: var(--cyan);
+    border-color: var(--cyan);
+    background: var(--bg-dark);
+  }
+
+  footer {
+    display: flex;
+    justify-content: center;
+    gap: 1.75rem;
+    height: 4.5rem;
+    padding: 1rem;
+    font-size: 0.85rem;
+  }
+
+  footer a {
+    color: var(--comment);
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    color: var(--cyan);
+  }
+</style>
