@@ -1,6 +1,6 @@
 # jouzu-www
 
-Source for [jouzu.dev](https://jouzu.dev), the landing page for [Jouzu](https://github.com/shisa-ai/jouzu). Built with [Astro](https://astro.build/).
+Source for [jouzu.dev](https://jouzu.dev). The site is a client-side redirect to the [Jouzu page on the Shisa AI Platform](https://platform.shisa.ai/jouzu). Built with [Astro](https://astro.build/).
 
 ## Develop
 
@@ -17,11 +17,11 @@ Requires Node.js 22.12 or newer (CI uses the version in `.nvmrc`).
 
 | Path | Purpose |
 | --- | --- |
-| `src/pages/index.astro` | Landing page |
-| `src/layouts/Base.astro` | HTML shell and meta tags |
-| `src/components/BrailleLogo.astro` | Jouzu braille mark as SVG; glyphs and gradient mirror `packages/cli/src/presentation.ts` in the jouzu repo |
+| `src/pages/index.astro` | Redirect page: inline `window.location.replace` plus a `<meta http-equiv="refresh">` fallback and a manual link for clients that block both |
 | `src/styles/global.css` | Tokyo Night palette and base styles |
 | `public/favicon.svg` | Copied from `packaging/windows/jouzu.svg` in the jouzu repo |
+
+The earlier landing page (braille mark, install command, download link) is preserved in git history at commit `a3a04bd` if it needs to come back.
 
 ## Deploy
 
